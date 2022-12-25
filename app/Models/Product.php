@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Product extends Model
 {
@@ -20,5 +21,14 @@ class Product extends Model
 
     public function skus(){
         return $this->hasMany(ProductSku::class);
+    }
+
+    public function getImageUrlAttribute(){
+        if(Str::startsWith($this->attributes['image'],['http://','https://'])){
+            return $this->attributes['image'];
+        }else{
+//            abort(2133,\Storage::disk('public'));exit;
+            return \Storage::disk('public')->url($this->attributes['image']);
+        }
     }
 }
