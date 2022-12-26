@@ -24,5 +24,6 @@ Route::group(['middleware' => []],function (){
     Route::get('user_addresses/{user_address}','UserAddressController@edit')->name('user_addresses.edit');
     Route::put('user_addresses/{user_address}','UserAddressController@update')->name('user_addresses.update');
     Route::delete('user_addresses/{user_address}', 'UserAddressController@destroy')->name('user_addresses.destroy');
-    Route::get('/products','ProductsController@index')->name('products.index');
+    Route::get('products','ProductsController@index')->name('products.index');
+    Route::get('products/{product}','ProductsController@show')->name('products.show');
 });
