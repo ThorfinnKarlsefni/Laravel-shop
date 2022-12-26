@@ -14,10 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::redirect('/','/products')->name('root');
-
 Auth::routes(['verify' => true]);
 
-Route::group(['middleware' => []],function (){
+Route::group(['middleware' => ['auth']],function (){
     Route::get('user_addresses','UserAddressController@index')->name('user_addresses.index');
     Route::get('user_addresses/create','UserAddressController@create')->name('user_addresses.create');
     Route::post('user_addresses','UserAddressController@store')->name('user_addresses.store');
@@ -26,4 +25,6 @@ Route::group(['middleware' => []],function (){
     Route::delete('user_addresses/{user_address}', 'UserAddressController@destroy')->name('user_addresses.destroy');
     Route::get('products','ProductsController@index')->name('products.index');
     Route::get('products/{product}','ProductsController@show')->name('products.show');
+    Route::post('products/{product}/favorite','ProductsController@favor')->name('products.favor');
+    Route::delete('products/{product}/favorite','ProductsController@disfavor')->name('products.disfavor');
 });
