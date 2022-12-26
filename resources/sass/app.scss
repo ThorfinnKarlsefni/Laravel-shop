@@ -57,7 +57,7 @@ body {
   }
 }
 
-.products-index-page {
+.products-index-page, .products-favorites-page {
   .pagination {
     margin-right: 5px;
   }
@@ -124,6 +124,8 @@ body {
     border-bottom: 1px solid #eee;
   }
 }
+
+
 
 .products-show-page {
   .cover {
