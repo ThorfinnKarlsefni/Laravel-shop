@@ -8,15 +8,16 @@ return[
     'alipay' => [
         'default' => [
             // 必填-支付宝分配的 app_id
-            'app_id' => '',
+            'app_id' => env('ALIPAY_APP_ID'),
             // 必填-应用私钥 字符串或路径
-            'app_secret_cert' => '',
+            'app_secret_cert' => env('ALIPAY_SECRET_CERT'),
+
             // 必填-应用公钥证书 路径
-            'app_public_cert_path' => '/appPublicCert.crt',
+            'app_public_cert_path' => env('APP_PUBLIC_CERT_PATH'),
             // 必填-支付宝公钥证书 路径
-            'alipay_public_cert_path' => '/alipayPublicCert.crt',
+            'alipay_public_cert_path' => env('ALIPAY_PUBLIC_CERT_PATH'),
             // 必填-支付宝根证书 路径
-            'alipay_root_cert_path' => '/alipayRootCert.crt',
+            'alipay_root_cert_path' => env('ALIPAY_ROOT_CERT_PATH'),
             'return_url' => 'https://yansongda.cn/alipay/return',
             'notify_url' => 'https://yansongda.cn/alipay/notify',
             // 选填-第三方应用授权token
