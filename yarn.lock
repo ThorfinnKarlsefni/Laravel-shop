@@ -924,7 +924,7 @@
 
 "@fortawesome/fontawesome-free@^6.2.1":
   version "6.2.1"
-  resolved "https://registry.npmmirror.com/@fortawesome/fontawesome-free/-/fontawesome-free-6.2.1.tgz#344baf6ff9eaad7a73cff067d8c56bfc11ae5304"
+  resolved "https://registry.npmmirror.com/@fortawesome/fontawesome-free/-/fontawesome-free-6.2.1.tgz"
   integrity sha512-viouXhegu/TjkvYQoiRZK3aax69dGXxgEjpvZW81wIJdxm5Fnvp3VVIP4VHKqX4SvFw6qpmkILkD4RJWAdrt7A==
 
 "@jridgewell/gen-mapping@^0.1.0":
@@ -5001,7 +5001,7 @@ svgo@^2.7.0:
 
 sweetalert@^2.1.2:
   version "2.1.2"
-  resolved "https://registry.npmmirror.com/sweetalert/-/sweetalert-2.1.2.tgz"
+  resolved "https://registry.npmmirror.com/sweetalert/-/sweetalert-2.1.2.tgz#010baaa80d0dbdc86f96bfcaa96b490728594b79"
   integrity sha512-iWx7X4anRBNDa/a+AdTmvAzQtkN1+s4j/JJRWlHpYE8Qimkohs8/XnFcWeYHH2lMA8LRCa5tj2d244If3S/hzA==
   dependencies:
     es6-object-assign "^1.1.0"
