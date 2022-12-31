@@ -7,9 +7,12 @@ use App\Http\Requests\Request;
 use App\Models\Order;
 use App\Services\OrderService;
 use App\Models\UserAddress;
+use Encore\Admin\Controllers\AdminController;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 
-class OrdersController extends Controller
+class OrdersController extends AdminController
 {
+    use ValidatesRequests;
     public function index(Request $request)
     {
         $orders = Order::query()
@@ -34,4 +37,5 @@ class OrdersController extends Controller
 
         return $orderService->store($user, $address, $request->input('address_id'), $request->input('items'));
     }
+
 }
