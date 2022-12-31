@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use App\Exceptions\InvalidRequestException;
 use App\Models\Order;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
-use mysql_xdevapi\Exception;
+use App\Events\OrderPaid;
 
 class PaymentController extends Controller
 {
@@ -56,6 +54,12 @@ class PaymentController extends Controller
             'payment_no'    => $data->trade_no,
         ]);
 
+        $this->afterPaid($order);
+
         return app('alipay')->success();
+    }
+
+    protected function afterPaid(Order $order){
+        event(new OrderPaid($order));
     }
 }
