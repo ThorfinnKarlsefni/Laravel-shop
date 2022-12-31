@@ -48,10 +48,10 @@
           <div class="product-detail">
             <ul class="nav nav-tabs" role="tablist">
               <li class="nav-item">
-                <a class="nav-link active" href="#product-detail-tab" aria-controls="product-detail-tab" role="tab" data-toggle="tab" aria-selected="true">商品详情</a>
+                <a class="nav-link active" href="#product-detail-tab" data-bs-target="#product-detail-tab" aria-controls="product-detail-tab" role="tab" data-bs-toggle="tab" aria-selected="true">商品详情</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#product-reviews-tab" aria-controls="product-reviews-tab" role="tab" data-toggle="tab" aria-selected="false">用户评价</a>
+                <a class="nav-link" href="#product-reviews-tab" data-bs-target="#product-reviews-tab" aria-controls="product-reviews-tab" role="tab" data-bs-toggle="tab" aria-selected="false">用户评价</a>
               </li>
             </ul>
             <div class="tab-content">
@@ -59,6 +59,30 @@
                 {!! $product->description !!}
               </div>
               <div role="tabpanel" class="tab-pane" id="product-reviews-tab">
+                <!-- 评论列表开始 -->
+                <table class="table table-bordered table-striped">
+                  <thead>
+                  <tr>
+                    <td>用户</td>
+                    <td>商品</td>
+                    <td>评分</td>
+                    <td>评价</td>
+                    <td>时间</td>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  @foreach($reviews as $review)
+                    <tr>
+                      <td>{{ $review->order->user->name }}</td>
+                      <td>{{ $review->productSku->title }}</td>
+                      <td>{{ str_repeat('★', $review->rating) }}{{ str_repeat('☆', 5 - $review->rating) }}</td>
+                      <td>{{ $review->review }}</td>
+                      <td>{{ $review->reviewed_at->format('Y-m-d H:i') }}</td>
+                    </tr>
+                  @endforeach
+                  </tbody>
+                </table>
+                <!-- 评论列表结束 -->
               </div>
             </div>
           </div>
@@ -80,7 +104,9 @@
         // 发起一个 post ajax 请求，请求 url 通过后端的 route() 函数生成。
         axios.post('{{ route('products.favor', ['product' => $product->id]) }}')
           .then(function () { // 请求成功会执行这个回调
-            swal('操作成功', '', 'success');
+            swal('操作成功', '', 'success').then(function (){
+                location.reload();
+            });
           }, function(error) { // 请求失败会执行这个回调
             // 如果返回码是 401 代表没登录
             if (error.response && error.response.status === 401) {
