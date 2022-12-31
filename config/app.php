@@ -125,8 +125,6 @@ return [
 
     'order_ttl' => 1800,
 
-    'ngrok_url' => env('NGROK_URL'),
-
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
