@@ -29,6 +29,8 @@ class ProductFactory extends Factory
             "https://cdn.learnku.com/uploads/images/201806/01/5320/pa7DrV43Mw.jpg",
         ]);
 
+        $category = \App\Models\Category::query()->where('is_directory',false)->inRandomOrder()->first();
+
         return [
             'title' => $this->faker->word,
             'description' => $this->faker->sentence,
@@ -37,7 +39,8 @@ class ProductFactory extends Factory
             'rating' => $this->faker->numberBetween(0, 5),
             'sold_count' => 0,
             'review_count' => 0,
-            'price' => 0
+            'price' => 0,
+            'category_id' => $category ? $category->id : null
         ];
     }
 }
