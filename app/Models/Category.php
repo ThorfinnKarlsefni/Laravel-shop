@@ -12,7 +12,7 @@ class Category extends Model
     protected $fillable = ['name','is_directory','level','path'];
 
     protected $casts = [
-        'is_directory' => 'bollean'
+        'is_directory' => 'boolean'
     ];
 
     protected static function boot()
@@ -24,7 +24,7 @@ class Category extends Model
                 $category->path = '-';
             }else{
                 $category->level = $category->parent->level + 1;
-                $category->path = $category->parent->path.$category->parent_id.'-'
+                $category->path = $category->parent->path.$category->parent_id.'-';
             }
         });
     }
