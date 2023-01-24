@@ -6,11 +6,12 @@ use App\Exceptions\InvalidRequestException;
 use App\Models\Category;
 use App\Models\OrderItem;
 use App\Models\Product;
+use App\Services\CategoryService;
 use Illuminate\Http\Request;
 
 class ProductsController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request,CategoryService $categoryService)
     {
         $builder = Product::query()->where('on_sale', true);
 
@@ -51,7 +52,8 @@ class ProductsController extends Controller
                 'search' => $search,
                 'order' => $order
             ],
-            'category' => $category ?? null
+            'category' => $category ?? null,
+            'categoryTree' => $categoryService->getCategoryTree()
         ]);
     }
 
