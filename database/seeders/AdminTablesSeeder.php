@@ -19,92 +19,108 @@ class AdminTablesSeeder extends Seeder
         \Encore\Admin\Auth\Database\Menu::insert(
             [
                 [
-                    "parent_id" => 0,
-                    "order" => 6,
-                    "title" => "Admin",
                     "icon" => "fa-tasks",
-                    "uri" => "",
-                    "permission" => NULL
+                    "order" => 6,
+                    "parent_id" => 0,
+                    "permission" => NULL,
+                    "title" => "Admin",
+                    "uri" => ""
                 ],
                 [
-                    "parent_id" => 2,
+                    "icon" => "fa-users",
                     "order" => 7,
+                    "parent_id" => 0,
+                    "permission" => NULL,
                     "title" => "Users",
-                    "icon" => "fa-users",
-                    "uri" => "auth/users",
-                    "permission" => NULL
+                    "uri" => "auth/users"
                 ],
                 [
-                    "parent_id" => 2,
-                    "order" => 8,
-                    "title" => "Roles",
                     "icon" => "fa-user",
-                    "uri" => "auth/roles",
-                    "permission" => NULL
+                    "order" => 8,
+                    "parent_id" => 2,
+                    "permission" => NULL,
+                    "title" => "Roles",
+                    "uri" => "auth/roles"
                 ],
                 [
-                    "parent_id" => 2,
-                    "order" => 9,
-                    "title" => "Permission",
                     "icon" => "fa-ban",
-                    "uri" => "auth/permissions",
-                    "permission" => NULL
+                    "order" => 9,
+                    "parent_id" => 2,
+                    "permission" => NULL,
+                    "title" => "Permission",
+                    "uri" => "auth/permissions"
                 ],
                 [
-                    "parent_id" => 2,
+                    "icon" => "fa-bars",
                     "order" => 10,
-                    "title" => "Menu",
-                    "icon" => "fa-bars",
-                    "uri" => "auth/menu",
-                    "permission" => NULL
-                ],
-                [
                     "parent_id" => 2,
-                    "order" => 11,
-                    "title" => "Operation log",
+                    "permission" => NULL,
+                    "title" => "Menu",
+                    "uri" => "auth/menu"
+                ],
+                [
                     "icon" => "fa-history",
-                    "uri" => "auth/logs",
-                    "permission" => NULL
+                    "order" => 11,
+                    "parent_id" => 2,
+                    "permission" => NULL,
+                    "title" => "Operation log",
+                    "uri" => "auth/logs"
                 ],
                 [
-                    "parent_id" => 0,
-                    "order" => 1,
-                    "title" => "User Management",
                     "icon" => "fa-users",
-                    "uri" => "users",
-                    "permission" => NULL
+                    "order" => 1,
+                    "parent_id" => 0,
+                    "permission" => NULL,
+                    "title" => "User Management",
+                    "uri" => "users"
                 ],
                 [
-                    "parent_id" => 0,
-                    "order" => 2,
-                    "title" => "Products",
                     "icon" => "fa-product-hunt",
-                    "uri" => "products",
-                    "permission" => NULL
+                    "order" => 2,
+                    "parent_id" => 13,
+                    "permission" => NULL,
+                    "title" => "Normal Products",
+                    "uri" => "products"
                 ],
                 [
-                    "parent_id" => 0,
-                    "order" => 3,
-                    "title" => "Orders",
                     "icon" => "fa-dollar",
-                    "uri" => "orders",
-                    "permission" => NULL
+                    "order" => 3,
+                    "parent_id" => 0,
+                    "permission" => NULL,
+                    "title" => "Orders",
+                    "uri" => "orders"
                 ],
                 [
-                    "parent_id" => 0,
-                    "order" => 4,
-                    "title" => "CouponCode",
                     "icon" => "fa-bars",
-                    "uri" => "coupon_codes",
-                    "permission" => NULL
+                    "order" => 4,
+                    "parent_id" => 0,
+                    "permission" => NULL,
+                    "title" => "CouponCode",
+                    "uri" => "coupon_codes"
                 ],
                 [
-                    "parent_id" => 0,
-                    "order" => 5,
-                    "title" => "Categories",
                     "icon" => "fa-certificate",
-                    "uri" => "categories",
-                    "permission" => NULL
+                    "order" => 5,
+                    "parent_id" => 0,
+                    "permission" => NULL,
+                    "title" => "Categories",
+                    "uri" => "categories"
+                ],
+                [
+                    "icon" => "fa-cc-mastercard",
+                    "order" => 0,
+                    "parent_id" => 13,
+                    "permission" => NULL,
+                    "title" => "Crowdfunding",
+                    "uri" => "/crowdfunding_products"
+                ],
+                [
+                    "icon" => "fa-stop",
+                    "order" => 0,
+                    "parent_id" => 0,
+                    "permission" => NULL,
+                    "title" => "Products",
+                    "uri" => NULL
                 ]
             ]
         );
@@ -113,40 +129,40 @@ class AdminTablesSeeder extends Seeder
         \Encore\Admin\Auth\Database\Permission::insert(
             [
                 [
+                    "http_method" => "",
+                    "http_path" => "*",
                     "name" => "All permission",
-                    "slug" => "*",
-                    "http_method" => "",
-                    "http_path" => "*"
+                    "slug" => "*"
                 ],
                 [
-                    "name" => "Dashboard",
-                    "slug" => "dashboard",
                     "http_method" => "GET",
-                    "http_path" => "/"
+                    "http_path" => "/",
+                    "name" => "Dashboard",
+                    "slug" => "dashboard"
                 ],
                 [
+                    "http_method" => "",
+                    "http_path" => "/auth/login\r\n/auth/logout",
                     "name" => "Login",
-                    "slug" => "auth.login",
-                    "http_method" => "",
-                    "http_path" => "/auth/login\r\n/auth/logout"
+                    "slug" => "auth.login"
                 ],
                 [
-                    "name" => "User setting",
-                    "slug" => "auth.setting",
                     "http_method" => "GET,PUT",
-                    "http_path" => "/auth/setting"
+                    "http_path" => "/auth/setting",
+                    "name" => "User setting",
+                    "slug" => "auth.setting"
                 ],
                 [
+                    "http_method" => "",
+                    "http_path" => "/auth/roles\r\n/auth/permissions\r\n/auth/menu\r\n/auth/logs",
                     "name" => "Auth management",
-                    "slug" => "auth.management",
-                    "http_method" => "",
-                    "http_path" => "/auth/roles\r\n/auth/permissions\r\n/auth/menu\r\n/auth/logs"
+                    "slug" => "auth.management"
                 ],
                 [
-                    "name" => "Users Management",
-                    "slug" => "users",
                     "http_method" => "",
-                    "http_path" => "/users*"
+                    "http_path" => "/users*",
+                    "name" => "Users Management",
+                    "slug" => "users"
                 ]
             ]
         );
@@ -170,16 +186,16 @@ class AdminTablesSeeder extends Seeder
         DB::table('admin_role_menu')->insert(
             [
                 [
-                    "role_id" => 1,
-                    "menu_id" => 2
+                    "menu_id" => 2,
+                    "role_id" => 1
                 ],
                 [
-                    "role_id" => 1,
-                    "menu_id" => 9
+                    "menu_id" => 9,
+                    "role_id" => 1
                 ],
                 [
-                    "role_id" => 2,
-                    "menu_id" => 9
+                    "menu_id" => 9,
+                    "role_id" => 2
                 ]
             ]
         );
@@ -188,24 +204,24 @@ class AdminTablesSeeder extends Seeder
         DB::table('admin_role_permissions')->insert(
             [
                 [
-                    "role_id" => 1,
-                    "permission_id" => 1
+                    "permission_id" => 1,
+                    "role_id" => 1
                 ],
                 [
-                    "role_id" => 2,
-                    "permission_id" => 2
+                    "permission_id" => 2,
+                    "role_id" => 2
                 ],
                 [
-                    "role_id" => 2,
-                    "permission_id" => 3
+                    "permission_id" => 3,
+                    "role_id" => 2
                 ],
                 [
-                    "role_id" => 2,
-                    "permission_id" => 4
+                    "permission_id" => 4,
+                    "role_id" => 2
                 ],
                 [
-                    "role_id" => 2,
-                    "permission_id" => 6
+                    "permission_id" => 6,
+                    "role_id" => 2
                 ]
             ]
         );
