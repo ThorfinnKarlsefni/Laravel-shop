@@ -14,7 +14,7 @@ use App\Models\CouponCode;
 use App\Models\Order;
 use App\Models\ProductSku;
 use App\Services\OrderService;
-use App\Models\UserAddress as Address;
+use App\Models\UserAddress;
 use Carbon\Carbon;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Support\Facades\DB;
@@ -132,7 +132,7 @@ class OrdersController extends Controller
     public function crowdfunding(CrowdfundingOrderRequest $request,OrderService $orderService){
         $user = $request->user();
         $sku = ProductSku::find($request->input('sku_id'));
-        $address = Address::find($request->input('address_id'));
+        $address = UserAddress::find($request->input('address_id'));
         $amount = $request->input('amount');
 
         return $orderService->crowdfunding($user,$address,$sku,$amount);
