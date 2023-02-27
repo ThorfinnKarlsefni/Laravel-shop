@@ -29,6 +29,7 @@ class OrderService
                     'contact_name'  => $address->contact_name,
                     'contact_phone' => $address->contact_phone
                 ],
+                'type' => Order::TYPE_NORMAL,
                 'remark' => $remark,
                 'total_amount' => 0
             ]);
@@ -88,6 +89,7 @@ class OrderService
                     'contact_name'  => $address->contact_name,
                     'contact_phone' => $address->contact_phone,
                 ],
+                'type' => Order::TYPE_CROWDFUNDING,
                 'remark'       => '',
                 'total_amount' => $sku->price * $amount,
             ]);

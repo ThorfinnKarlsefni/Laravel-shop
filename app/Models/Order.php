@@ -10,6 +10,9 @@ class Order extends Model
 {
     use HasFactory;
 
+    const TYPE_NORMAL = 'normal';
+    const TYPE_CROWDFUNDING = 'crowdfunding';
+
     const REFUND_STATUS_PENDING = 'pending';
     const REFUND_STATUS_APPLIED = 'applied';
     const REFUND_STATUS_PROCESSING = 'processing';
@@ -35,6 +38,7 @@ class Order extends Model
     ];
 
     protected $fillable = [
+        'type',
         'no',
         'address',
         'total_amount',

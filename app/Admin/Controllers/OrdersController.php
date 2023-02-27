@@ -6,6 +6,7 @@ use App\Exceptions\InternalException;
 use App\Exceptions\InvalidRequestException;
 use App\Http\Requests\Admin\HandleRefundRequest;
 use App\Http\Requests\Request;
+use App\Models\CrowdfundingProduct;
 use App\Models\Order;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
@@ -139,7 +140,10 @@ class OrdersController extends AdminController
         if($order->ship_status !== Order::SHIP_STATUS_PENDING){
             throw new InvalidRequestException('订单已发货');
         }
-
+        
+        if($order->type === Order::TYPE_CROWDFUNDING && $order->items[0]->product->crwofunding->status !== CrowdfundingProduct::STATUS_SUCCESS){
+            throw new InvalidRequestException('众筹订单只能在众筹成功后发货');
+        }
         $data = $this->validate($request,[
             'express_company' => ['required'],
             'express_no'    =>  ['required'],
@@ -184,7 +188,7 @@ class OrdersController extends AdminController
 
     protected function _refundOrder(Order $order){
         switch ($order->payment_method){
-            case 'wechat':
+            cae 'wechat':
                 // todo
                 break;
             case 'alipay':

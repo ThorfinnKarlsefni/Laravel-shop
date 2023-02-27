@@ -115,6 +115,10 @@ class OrdersController extends Controller
             throw new InvalidRequestException('订单未支付 不可退款');
         }
 
+        if($order->type === Order::TYPE_CROWDFUNDING){
+            throw new InvalidRequestException('Crowfunding product Refund is not supperted');
+        }
+
         if($order->refund_status !== Order::REFUND_STATUS_PENDING){
             throw new InvalidRequestException('订单已经申请过退款 请勿重复申请');
         }
