@@ -8,6 +8,7 @@ use App\Http\Requests\Admin\HandleRefundRequest;
 use App\Http\Requests\Request;
 use App\Models\CrowdfundingProduct;
 use App\Models\Order;
+use App\Services\OrderService;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -160,7 +161,7 @@ class OrdersController extends AdminController
         return redirect()->back();
     }
 
-    public function handleRefund(Order $order,HandleRefundRequest $request){
+    public function handleRefund(Order $order,HandleRefundRequest $request,OrderService $orderService){
         if($order->refund_status !== Order::REFUND_STATUS_APPLIED){
             throw new InvalidRequestException('订单状态不正确');
         }
@@ -172,7 +173,8 @@ class OrdersController extends AdminController
                 'extra' => $extra,
             ]);
 
-            $this->_refundOrder($order);
+            // $this->_refundOrder($order);
+            $orderService->refundOrder($order);
         }else {
             $extra = $order->extra ?: [];
             $extra['refund_disagree_reason'] = $request->input('reason');
@@ -188,7 +190,7 @@ class OrdersController extends AdminController
 
     protected function _refundOrder(Order $order){
         switch ($order->payment_method){
-            cae 'wechat':
+            case 'wechat':
                 // todo
                 break;
             case 'alipay':
